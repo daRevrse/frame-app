@@ -1,5 +1,5 @@
 {
-  "name": "charity-frame-app",
+  "name": "myframe-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "konva": "^10.0.12",
     "multer": "^2.0.2",
@@ -20,6 +21,7 @@
     "react-dom": "^19.2.0",
     "react-konva": "^19.2.1",
     "react-router-dom": "^7.9.6",
+    "stripe": "^20.0.0",
     "use-image": "^1.1.4"
   },
   "devDependencies": {

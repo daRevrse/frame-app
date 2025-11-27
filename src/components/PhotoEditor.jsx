@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { Stage, Layer, Image as KonvaImage } from "react-konva";
 import useImage from "use-image";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import ExpirationWarning from "./ExpirationWarning";
+import PricingModal from "./PricingModal";
+import config from "../config";
 
 // Composant pour charger et afficher l'image utilisateur
 const UserImage = ({ image, imageProps, onDragEnd, onTransform }) => {
@@ -58,16 +61,21 @@ function PhotoEditor() {
   // Charger le cadre personnalisé depuis l'URL
   const frameId = searchParams.get("frame");
   const [customFrameUrl, setCustomFrameUrl] = useState(null);
+  const [expiresAt, setExpiresAt] = useState(null);
+  const [currentPlan, setCurrentPlan] = useState("free");
+  const [showPricingModal, setShowPricingModal] = useState(false);
 
   useEffect(() => {
     const loadCustomFrame = async () => {
       if (frameId) {
         try {
-          const response = await fetch(`http://localhost:3001/api/frames/${frameId}`);
+          const response = await fetch(`${config.API_URL}/api/frames/${frameId}`);
           const data = await response.json();
 
           if (data.success) {
             setCustomFrameUrl(data.frame.url);
+            setExpiresAt(data.frame.expiresAt);
+            setCurrentPlan(data.frame.plan || "free");
           } else {
             console.error("Cadre non trouvé");
           }
@@ -434,6 +442,24 @@ function PhotoEditor() {
           )}
         </div>
       </div>
+
+      {/* Expiration Warning - Only show if frameId exists */}
+      {frameId && (
+        <>
+          <ExpirationWarning
+            expiresAt={expiresAt}
+            frameId={frameId}
+            onUpgrade={() => setShowPricingModal(true)}
+          />
+
+          <PricingModal
+            isOpen={showPricingModal}
+            onClose={() => setShowPricingModal(false)}
+            frameId={frameId}
+            currentPlan={currentPlan}
+          />
+        </>
+      )}
     </div>
   );
 }

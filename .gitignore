@@ -24,3 +24,15 @@ dist-ssr
 *.sw?
 
 .claude/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Uploads folder
+server/uploads/*
+!server/uploads/.gitkeep
+
+# Database
+server/frames.json

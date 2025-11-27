@@ -11,7 +11,7 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
-              Cadre Caritatif
+              MyFrame
             </h1>
             <p className="mt-2 text-sm sm:text-base text-gray-600">
               Créez, partagez et utilisez des cadres personnalisés
@@ -60,9 +60,7 @@ function Home() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-gray-700">
-                    Uploadez votre photo
-                  </span>
+                  <span className="text-gray-700">Uploadez votre photo</span>
                 </li>
                 <li className="flex items-start">
                   <svg
@@ -92,9 +90,7 @@ function Home() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-gray-700">
-                    Téléchargez et partagez
-                  </span>
+                  <span className="text-gray-700">Téléchargez et partagez</span>
                 </li>
               </ul>
               <button
@@ -175,9 +171,7 @@ function Home() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-gray-700">
-                    Partagez avec vos amis
-                  </span>
+                  <span className="text-gray-700">Partagez avec vos amis</span>
                 </li>
               </ul>
               <button
@@ -202,8 +196,9 @@ function Home() {
                   Pour les utilisateurs
                 </h4>
                 <p className="text-gray-600 text-sm">
-                  Cliquez sur un lien de cadre partagé, uploadez votre photo, ajustez-la
-                  selon vos préférences et téléchargez le résultat final.
+                  Cliquez sur un lien de cadre partagé, uploadez votre photo,
+                  ajustez-la selon vos préférences et téléchargez le résultat
+                  final.
                 </p>
               </div>
               <div>
@@ -211,8 +206,9 @@ function Home() {
                   Pour les créateurs
                 </h4>
                 <p className="text-gray-600 text-sm">
-                  Uploadez votre cadre personnalisé, obtenez un lien de partage unique
-                  et partagez-le pour que d'autres utilisent votre création.
+                  Uploadez votre cadre personnalisé, obtenez un lien de partage
+                  unique et partagez-le pour que d'autres utilisent votre
+                  création.
                 </p>
               </div>
             </div>
@@ -223,6 +219,7 @@ function Home() {
       {/* Footer */}
       <footer className="mt-12 pb-8 text-center text-gray-500 text-sm">
         <p>Partagez votre soutien sur les réseaux sociaux</p>
+        <a href="https://flowkraftagency.com">FlowKraft Agency</a>
       </footer>
     </div>
   );

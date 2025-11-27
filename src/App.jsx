@@ -1,8 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useSearchParams } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useSearchParams,
+} from "react-router-dom";
 import Home from "./components/Home";
 import PhotoEditor from "./components/PhotoEditor";
 import FrameUploader from "./components/FrameUploader";
+import Success from "./components/Success";
 
 // Wrapper pour gérer l'ancienne route racine avec paramètres
 function RootWrapper() {
@@ -46,31 +52,36 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<RootWrapper />} />
-        <Route path="/editor" element={
-          <div className="min-h-screen bg-gradient-to-br from-charity-primary/10 via-white to-charity-secondary/10">
-            <header className="bg-white shadow-sm">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <div className="text-center">
-                  <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
-                    Cadre Caritatif
-                  </h1>
-                  <p className="mt-2 text-sm sm:text-base text-gray-600">
-                    Ajoutez votre photo dans notre cadre et partagez votre soutien
-                  </p>
+        <Route
+          path="/editor"
+          element={
+            <div className="min-h-screen bg-gradient-to-br from-charity-primary/10 via-white to-charity-secondary/10">
+              <header className="bg-white shadow-sm">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                  <div className="text-center">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                      MyFrame
+                    </h1>
+                    <p className="mt-2 text-sm sm:text-base text-gray-600">
+                      Ajoutez votre cadre photo et partagez le avec vos proches
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </header>
+              </header>
 
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <PhotoEditor />
-            </main>
+              <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <PhotoEditor />
+              </main>
 
-            <footer className="mt-12 pb-8 text-center text-gray-500 text-sm">
-              <p>Partagez votre soutien sur les réseaux sociaux</p>
-            </footer>
-          </div>
-        } />
+              <footer className="mt-12 pb-8 text-center text-gray-500 text-sm">
+                <p>Partagez votre soutien sur les réseaux sociaux</p>
+                <a href="https://flowkraftagency.com">FlowKraft Agency</a>
+              </footer>
+            </div>
+          }
+        />
         <Route path="/upload" element={<FrameUploader />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </Router>
   );

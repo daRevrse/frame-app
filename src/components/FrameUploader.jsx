@@ -1,11 +1,16 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import PricingModal from "./PricingModal";
+import config from "../config";
 
 function FrameUploader() {
   const [uploadedFrame, setUploadedFrame] = useState(null);
   const [framePreview, setFramePreview] = useState(null);
   const [shareLink, setShareLink] = useState("");
   const [copied, setCopied] = useState(false);
+  const [frameId, setFrameId] = useState(null);
+  const [showPricingModal, setShowPricingModal] = useState(false);
+  const [expiresAt, setExpiresAt] = useState(null);
   const fileInputRef = useRef();
   const navigate = useNavigate();
 
@@ -26,7 +31,7 @@ function FrameUploader() {
       const formData = new FormData();
       formData.append("frame", file);
 
-      const response = await fetch("http://localhost:3001/api/frames/upload", {
+      const response = await fetch(`${config.API_URL}/api/frames/upload`, {
         method: "POST",
         body: formData,
       });
@@ -36,6 +41,13 @@ function FrameUploader() {
       if (data.success) {
         setUploadedFrame(data.frameUrl);
         setShareLink(data.shareUrl);
+        setFrameId(data.frameId);
+        setExpiresAt(data.expiresAt);
+
+        // Afficher le modal de pricing après un court délai
+        setTimeout(() => {
+          setShowPricingModal(true);
+        }, 1500);
       } else {
         alert("Erreur lors de l'upload: " + (data.error || "Erreur inconnue"));
       }
@@ -278,6 +290,14 @@ function FrameUploader() {
           </button>
         </div>
       </main>
+
+      {/* Pricing Modal */}
+      <PricingModal
+        isOpen={showPricingModal}
+        onClose={() => setShowPricingModal(false)}
+        frameId={frameId}
+        currentPlan="free"
+      />
     </div>
   );
 }
